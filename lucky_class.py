@@ -1,9 +1,9 @@
 import json
+from string import capitalize, lower
 
 ##########################################
 # Import json object, used by other class
 ##########################################
-from string import capitalize
 
 
 class DataFileMixin:
@@ -87,7 +87,9 @@ class Inventory(DataFileMixin):
         return result
 
 
+#########################################################
 # Compendium tracking discovered ingredients and dishes.
+#########################################################
 class Compendium(DataFileMixin):
 
     def __init__(self, category):
@@ -121,6 +123,60 @@ class Compendium(DataFileMixin):
     # Unlock a recipe if it exist
     def unlock(self, key):
         if key in self.key:
-            self.status[self.index(key)] = True
+            self.status[self.key.index(key)] = True
         else:
             print ("No recipe with the ID {0}".format(key))
+
+
+#########################################################
+# Set and describe emplacement
+#########################################################
+class Place:
+    PLACE_DESCRIPTION = {
+        0: {
+            "name": "road",
+            "can_go": [1, 2, 3],
+            "can_do": []
+        },
+        1: {
+            "name": "cafe",
+            "can_go": [0, 3, 4],
+            "can_do": ["sell"]
+        },
+        2: {
+            "name": "shop",
+            "can_go": [0],
+            "can_do": ["buy"]
+        },
+        3: {
+            "name": "room",
+            "can_go": [1, 4],
+            "can_do": ["sleep"]
+        },
+        4: {
+            "name": "kitchen",
+            "can_go": [1, 3],
+            "can_do": ["cook"]
+        }
+    }
+
+    def __init__(self, key):
+        self.key = key
+        for attr in self.PLACE_DESCRIPTION[key]:
+            setattr(self, attr, self.PLACE_DESCRIPTION[key][attr])
+
+    def description(self):
+        desc = "You are here: " + self.name + "."
+        if self.name == "kitchen":
+            desc += "\nHere you can 'cook' things.\n"
+        if self.name == "shop":
+            desc += "\nHere you can 'buy' or 'sell' ingredients.\n"
+        if self.name == "cafe":
+            desc += "\nHere you can 'sell' dishes.\n"
+        desc += "\nYou can go to those places :\n"
+        for test in self.can_go:
+            desc += capitalize(Place(test).name + ".\n")
+        return desc
+
+    def can_do_this(self, choice):
+        return lower(choice) in self.can_do
