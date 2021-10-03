@@ -28,12 +28,14 @@ class Inventory(DataFileMixin):
         self.quantity = []
         self.category = category
 
+    # Find where the key is. -1 if not present.
     def find(self, key):
         if key in self.key:
             return self.key.index(key)
         else:
             return -1
 
+    # Sort inventory by key value.
     def sort(self):
         key = self.key
         quantity = self.quantity
@@ -47,6 +49,7 @@ class Inventory(DataFileMixin):
         self.key = sorted_key
         self.quantity = sorted_quantity
 
+    # Add to inventory.
     def add(self, key, number=1):
         where = self.find(key)
         if number > self.MAX_NUMBER:
@@ -59,6 +62,7 @@ class Inventory(DataFileMixin):
             if self.quantity[where] > self.MAX_NUMBER:
                 self.quantity[where] = self.MAX_NUMBER
 
+    # Remove from inventory.
     def remove(self, key, number=1):
         where = self.find(key)
         if where < 0:
@@ -83,6 +87,7 @@ class Inventory(DataFileMixin):
         return result
 
 
+# Compendium tracking discovered ingredients and dishes.
 class Compendium(DataFileMixin):
 
     def __init__(self, category):
@@ -113,15 +118,9 @@ class Compendium(DataFileMixin):
                             self._get_by_index(ingredient[0], "ingredient")["name"], ingredient[1]))
         return result
 
-    def find(self, key):
-        if key in self.key:
-            return self.key.index(key)
-        else:
-            return -1
-
+    # Unlock a recipe if it exist
     def unlock(self, key):
-        where = self.find(key)
-        if where < 0:
-            print ("No recipe with this ID.")
+        if key in self.key:
+            self.status[self.index(key)] = True
         else:
-            self.status[where] = True
+            print ("No recipe with the ID {0}".format(key))
