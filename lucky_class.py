@@ -122,6 +122,6 @@ class Compendium(DataFileMixin):
     def unlock(self, key):
         where = self.find(key)
         if where < 0:
-            print ("No recipe with this ID")
+            print ("No recipe with this ID.")
         else:
             self.status[where] = True
