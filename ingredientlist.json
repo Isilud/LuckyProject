@@ -1,0 +1,44 @@
+{
+  "100" : {
+    "name": "coffee beans",
+    "stackable": true,
+    "description": "You have to start somewhere.",
+    "price": 5
+  },
+  "101" : {
+    "name": "milk",
+    "stackable": true,
+    "description": "Fresh from the fridge.",
+    "price": 5
+  },
+  "200" : {
+    "name": "rice",
+    "stackable": true,
+    "description": "Used in lots of recipe.",
+    "price": 5
+  },
+  "300" : {
+    "name": "tomato",
+    "stackable": true,
+    "description": "Fresh from the garden.",
+    "price": 5
+  },
+  "400" : {
+    "name": "ham",
+    "stackable": true,
+    "description": "A unique slice.",
+    "price": 5
+  },
+  "500" : {
+    "name": "apple",
+    "stackable": true,
+    "description": "Picked on the tree.",
+    "price": 5
+  },
+  "600" : {
+    "name": "cinnamon",
+    "stackable": true,
+    "description": "Goes well with apple.",
+    "price": 5
+  }
+}

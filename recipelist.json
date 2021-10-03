@@ -1,0 +1,16 @@
+{
+  "0"
+  :
+  {
+    "name": "expresso",
+    "stackable": true,
+    "description": "A pretty simple expresso.",
+    "price": 2,
+    "ingredient_which": [
+      "100"
+    ],
+    "ingredient_many": [
+      1
+    ]
+  }
+}

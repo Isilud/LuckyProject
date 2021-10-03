@@ -1,0 +1,14 @@
+{
+  "0" : {
+    "name":"-",
+    "stackable": true,
+    "description": "The absence of stuff.",
+    "price":0
+  },
+  "1" : {
+    "name": "rock",
+    "stackable": true,
+    "description": "A rock you found on the ground. Is there any use to it ?",
+    "price":1
+  }
+}
